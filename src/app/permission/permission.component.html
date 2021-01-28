@@ -1,0 +1,9 @@
+<form (ngSubmit)="onSubmit(form)" #form="ngForm">
+    <div class="form-group">
+        <label for="title">Persmission title</label>
+        <input type="text" name="title" id="title" class="form-control" ngModel required #nameCtrl="ngModel">
+        <span class="help-block" *ngIf="nameCtrl.invalid && nameCtrl.touched">Please enter a Title</span>
+    </div>
+
+    <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Add Permission</button>
+</form>

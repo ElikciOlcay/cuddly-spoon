@@ -1,0 +1,35 @@
+<form (ngSubmit)="onSubmit(form)" #form="ngForm">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" class="form-control" ngModel required #nameCtrl="ngModel">
+        <span class="help-block" *ngIf="nameCtrl.invalid && nameCtrl.touched">Please enter a Name</span>
+    </div>
+
+    <div class="form-group">
+        <label for="group">Group</label>
+        <select name="group" id="group" class="form-control"  [(ngModel)]="selectedGroupTitle" (change)="onSelectGroup()">
+            <option *ngFor="let group of groups" [value]="group.title">
+                {{ group.title }}
+            </option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="group">User Permisson</label>
+        <select name="permisson" id="permisson" class="form-control" [(ngModel)]="selectedPermissionTitle" (change)="onSelectPermission()">
+            <option *ngFor="let permission of permissions" [value]="permission.title">
+                {{ permission.title }}
+            </option>
+        </select>
+    </div>
+    <ul>
+        <li *ngFor="let permission of selectedPermissions; index as i">
+            <div class="list-group-item d-flex justify-content-between align-items-center">
+                {{ permission.title }} 
+            <div style="cursor: pointer;" *ngIf="selectedPermissions.length" (click)="deletePermission(i)">x</div>
+            </div>
+        </li>
+        
+    </ul>
+    <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Add User</button>
+</form>

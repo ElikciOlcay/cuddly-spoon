@@ -1,0 +1,6 @@
+<div class="list">
+    <h3 *ngIf="users.length">User</h3>
+<div class="list-group">
+    <app-user *ngFor="let user of users" [user]="user"></app-user>
+</div>
+</div>
